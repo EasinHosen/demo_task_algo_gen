@@ -1,4 +1,6 @@
 import 'package:demo/pages/text_page.dart';
+import 'package:demo/widgets/custom_appbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,9 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
+      appBar: const CustomAppBar(title: 'Homepage'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,14 +43,18 @@ class HomePage extends StatelessWidget {
           TextButton(
             onPressed: () {
               Navigator.pop(context, false);
-              print('No');
+              if (kDebugMode) {
+                print('No');
+              }
             },
             child: const Text('no'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context, true);
-              print('Yes');
+              if (kDebugMode) {
+                print('Yes');
+              }
             },
             child: const Text('yes'),
           ),

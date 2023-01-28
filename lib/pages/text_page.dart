@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class TextPage extends StatelessWidget {
@@ -6,6 +7,7 @@ class TextPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool flag = false;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Text Page'),
@@ -21,8 +23,21 @@ class TextPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: ElevatedButton(
-                onPressed: () => print('Text page button pressed'),
-                child: const Text('Button'),
+                onPressed: () {
+                  flag = !flag;
+                  if (kDebugMode) {
+                    print('Pressed $flag');
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (flag) return Colors.green;
+                      return Colors.blue;
+                    },
+                  ),
+                ),
+                child: const Text('Tap'),
               ),
             ),
           ],
